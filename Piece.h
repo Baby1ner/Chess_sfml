@@ -31,7 +31,7 @@ public:
 	}
 
 
-
+	Piece () {}
 
 
 
@@ -51,7 +51,7 @@ public:
 	Coordinates get_coordinates() { return coordinates; }
 	void set_coordinates(Coordinates coordinates1) { coordinates = coordinates1; }
 	void set_coordinates(int coor) {
-		Coordinates coordinates = Coordinates(coor%8,coor/8); 
+		coordinates = Coordinates(coor%8,coor/8); 
 	}
 
 	
@@ -59,7 +59,15 @@ public:
 
 	}
 
+	bool contains(int n, unordered_map<int, Piece*> pieces) {
+		for (auto& item : pieces) {
+			if (n == item.first) return true;
+		}
+		return false;
+	}
 	
-
+	int coor_toint(int x, int y) {
+		return x + y * 8;
+	}
 };
 

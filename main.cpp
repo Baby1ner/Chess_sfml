@@ -3,6 +3,7 @@
 #include "Piece.h"
 #include <iostream>
 #include <set>
+#include <unordered_map>
 #include "Pieces/Pawn.h"
 #include "Pieces/king.h"
 #include "Pieces/knight.h"
@@ -18,9 +19,10 @@ using namespace sf;
     int mouse_x;
     int mouse_y;
     bool right_pressed = false;
-
-
-
+    set<int> coordinates_moves;
+    Piece* piece_pressed = new Piece;
+    int x_choosen;
+    int y_choosen;
 
 
     
@@ -73,9 +75,21 @@ int main()
             mouse_x = mousePos.x;
             mouse_y = mousePos.y;
             right_pressed = true;
+            
         }
 
+        if (Mouse::isButtonPressed(sf::Mouse::Left)) {
+            mouse_x = mousePos.x;
+            mouse_y = mousePos.y;
+            for (int i : coordinates_moves) {
+                if (i % 8 == (mouse_x / 100) && i / 8 == (mouse_y / 100)) {
 
+                    board.setPiece(i, piece_pressed);
+
+                }
+            }
+            right_pressed = false;
+        }
 
 
 
@@ -88,12 +102,14 @@ int main()
             piece_rectangle.setPosition(((item.first % 8)) * 100, (item.first / 8) * 100);
             
             if (item.first % 8 == (mouse_x / 100) && item.first / 8 == (mouse_y / 100) && right_pressed) {
-                
+                coordinates_moves.clear();
+                piece_pressed = new Piece;
                 item.second->get_posible_moves(board.pieces);
-                
                 for (int i = 0; i < 63;i++) {
                     for (int j : item.second->get_coordinates_moves()) {
                         if (i == j) {
+                            coordinates_moves.insert(i);
+                            piece_pressed = item.second;
                             under_piece_rectangle.setPosition(((j % 8)) * 100, (j / 8) * 100);
                             under_piece_rectangle.setFillColor(sf::Color::Red);
                             window.draw(under_piece_rectangle);
@@ -101,10 +117,8 @@ int main()
                     }
                 }
                 under_piece_rectangle.setFillColor(sf::Color::Green);
-                
-
-
             }
+
             else {
                 under_piece_rectangle.setFillColor(sf::Color::Transparent);
             }
