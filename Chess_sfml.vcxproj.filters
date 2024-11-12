@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="openal32.dll" />
+    <None Include="sfml-graphics-2.dll" />
+    <None Include="sfml-audio-d-2.dll" />
+    <None Include="sfml-audio-2.dll" />
+    <None Include="sfml-graphics-d-2.dll" />
+    <None Include="sfml-network-2.dll" />
+    <None Include="sfml-network-d-2.dll" />
+    <None Include="sfml-system-2.dll" />
+    <None Include="sfml-system-d-2.dll" />
+    <None Include="sfml-window-2.dll" />
+    <None Include="sfml-window-d-2.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Piece.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Coordinates.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Pieces\Pawn.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Pieces\king.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Pieces\knight.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Pieces\queen.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Pieces\rook.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Pieces\bishop.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\BishopBlack.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\BishopWhite.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\Board.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\HorseBlack.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\HorseWhite.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\KingBlack.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\KingWhite.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\PawnBlack.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\PawnWhite.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\QueenBlack.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\QueenWhite.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\RookBlack.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\RookWhite.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\TransformareAlb.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="images\TransformareNegru.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
