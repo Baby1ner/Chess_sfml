@@ -26,9 +26,8 @@ using namespace sf;
     int a = 100;
     bool turn = true;
     int del_coor;
-
+    bool do_once = true;
     std::unordered_map<int, Piece*> pieces;
-    //std::unordered_map<int, Piece*> pieces_kostil;
 
 
 
@@ -79,7 +78,16 @@ int main()
             mouse_y = mousePos.y;
             right_pressed = true;
             left_pressed = false;
-            
+            if (!do_once) {
+                do_once = true;
+
+                if (turn) {
+                    turn = false;
+                }
+                else {
+                    turn = true;
+                }
+            }
         }
 
         if (Mouse::isButtonPressed(sf::Mouse::Left)) {
@@ -99,10 +107,10 @@ int main()
             int coor_piece = item.second->get_coordinates().GetInt();
             Texture kostil = (item.second)->get_texture();
             piece_rectangle.setTexture(&kostil);
-            piece_rectangle.setPosition(((item.first % 8)) * 100, (item.first / 8) * 100);
+            piece_rectangle.setPosition(((coor_piece % 8)) * 100, (coor_piece / 8) * 100);
             
-            if (item.first % 8 == (mouse_x / 100) && item.first / 8 == (mouse_y / 100) && right_pressed && turn == item.second->get_color()) {
-                coor_chosen = item.first;
+            if (coor_piece % 8 == (mouse_x / 100) && coor_piece / 8 == (mouse_y / 100) && right_pressed && turn == item.second->get_color()) {
+                coor_chosen = coor_piece;
                 coordinates_moves.clear();
                 Piece* piece_new{ item.second };
                 piece_pressed = piece_new;
@@ -127,39 +135,51 @@ int main()
                 under_piece_rectangle.setFillColor(sf::Color::Transparent);
             }
 
+
+            if (left_pressed) {
+                for (int i : coordinates_moves) {
+                    if (i % 8 == (mouse_x / 100) && i / 8 == (mouse_y / 100)) {
+
+                        if (do_once) {
+                            for (auto& item : pieces) {
+                                if (item.second->get_coordinates().GetInt() == i) {
+                                    item.second->set_coordinates(-1);
+                                    
+                                }
+                            }
+                        }
+                        
+
+                        for (auto& item : pieces) {
+                            if (item.second->get_coordinates().GetInt() == coor_chosen) {
+                                item.second->set_coordinates(i);
+                                item.second->set_first_move(false);
+                            }
+                               
+                        }
+                        do_once = false;
+
+                    }
+                }
+
+
+            }
+
+            //if (item.first == 3 || item.first == )
+
+
+
+
+
             //Govno* govn{ item.second };
             
-            under_piece_rectangle.setPosition(((item.first % 8)) * 100, (item.first / 8) * 100);
+            under_piece_rectangle.setPosition(((coor_piece % 8)) * 100, (coor_piece / 8) * 100);
 
             window.draw(under_piece_rectangle);
             window.draw(piece_rectangle);
         }
 
-        /*if (left_pressed) {
-            for (int i : coordinates_moves) {
-                if (i % 8 == (mouse_x / 100) && i / 8 == (mouse_y / 100)) {
-
-                    for (auto it = begin(pieces); it != end(pieces);)
-                    {
-                        it = pieces.erase(it);
-                        ++it;
-                    }
-
-                    
-                    for (auto& item : pieces_kostil) {
-                        if (item.first != coor_chosen) {
-                            pieces.insert(std::make_pair(item.first, item.second));
-
-                        }
-                        
-
-                    }
-                    piece_pressed->set_coordinates(i);
-                    pieces.insert(std::make_pair(i, piece_pressed));
-
-                }
-            }
-        }*/
+        // в гет мув проверить чтобы не выходило за поле
         
 
 

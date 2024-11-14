@@ -11,11 +11,13 @@ class Piece
 	
 public:
 
+	bool first_move = true;
 	bool color = false;
 	Coordinates coordinates;
 	Texture texture;
 	set <int> coordinates_moves;
 
+	void set_first_move(bool r) { first_move = r; }
 	bool get_color() {
 		return color;
 	}
@@ -68,13 +70,37 @@ public:
 
 	}
 
-	bool contains(int n, unordered_map<int, Piece*> pieces) {
+	bool contains_teammate(int n, unordered_map<int, Piece*> pieces) {
 		for (auto& item : pieces) {
-			if (n == item.first) return true;
+			if (n == item.second->get_coordinates().GetInt() && item.second->get_color() == color) return true;
 		}
 		return false;
 	}
 	
+	bool contains(int n, unordered_map<int, Piece*> pieces) {
+		for (auto& item : pieces) {
+			if (n == item.second->get_coordinates().GetInt()) return true;
+		}
+		return false;
+	}
+
+	bool contains_enemy(int n, unordered_map<int, Piece*> pieces) {
+		for (auto& item : pieces) {
+			if (n == item.second->get_coordinates().GetInt() && item.second->get_color() == !color) return true;
+		}
+		return false;
+	}
+
+	int coor_int(int x, int y) {
+		return x + y * 8;
+	}
+
+
+
+
+
+
+
 	int coor_toint(int x, int y) {
 		return x + y * 8;
 	}

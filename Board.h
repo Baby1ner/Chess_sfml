@@ -95,11 +95,11 @@ public:
 		setPiece(57, knight3);
 		Queen* queen1 = new Queen(true, 59);
 		setPiece(59, queen1);
-		Rook* rook2 = new Rook(true, 0);
+		Rook* rook2 = new Rook(true, 56);
 		setPiece(56, rook2);
-		Rook* rook12 = new Rook(true, 7);
+		Rook* rook12 = new Rook(true, 63);
 		setPiece(63, rook12);
-		Bishop* bishop2 = new Bishop(true, 55);
+		Bishop* bishop2 = new Bishop(true, 58);
 		setPiece(58, bishop2);
 		Bishop* bishop12 = new Bishop(true, 61);
 		setPiece(61, bishop12);

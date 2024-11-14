@@ -29,6 +29,59 @@ public:
 	}
 
 	void get_posible_moves(unordered_map<int, Piece*> pieces) override {
+
+		int moment_x = coordinates.xcoor;
+		int moment_y = coordinates.ycoor;
+
+
+		if (!contains_teammate(moment_x - 1 + (moment_y - 1) * 8, pieces) && moment_x >= 0 && moment_y >= 0) {
+			coordinates_moves.insert(coor_int(moment_x-1, moment_y-1));
+		}
+		if (!contains_teammate(moment_x - 1 + moment_y * 8, pieces) && moment_x >= 0 && moment_y >= 0) {
+			coordinates_moves.insert(coor_int(moment_x - 1, moment_y));
+		}
+		if (!contains_teammate(moment_x - 1 + (moment_y + 1) * 8, pieces) && moment_x >= 0 && moment_y < 8) {
+			coordinates_moves.insert(coor_int(moment_x - 1, moment_y + 1));
+		}
+
+
+		if (!contains_teammate(moment_x + 1 + moment_y - 1 * 8, pieces) && moment_x < 8 && moment_y >= 0) {
+			coordinates_moves.insert(coor_int(moment_x + 1, moment_y - 1));
+		}
+		if (!contains_teammate(moment_x + 1 + moment_y * 8, pieces) && moment_x < 8) {
+			coordinates_moves.insert(coor_int(moment_x + 1, moment_y));
+		}
+		if (!contains_teammate(moment_x + 1 + moment_y + 1 * 8, pieces) && moment_x < 8 && moment_y < 8) {
+			coordinates_moves.insert(coor_int(moment_x + 1, moment_y + 1));
+		}
+
+
+
+		if (!contains_teammate(moment_x + moment_y - 1 * 8, pieces) && moment_x < 8 && moment_y >= 0) {
+			coordinates_moves.insert(coor_int(moment_x, moment_y - 1));
+		}
+		if (!contains_teammate(moment_x + moment_y + 1 * 8, pieces) && moment_x < 8 && moment_y < 8) {
+			coordinates_moves.insert(coor_int(moment_x, moment_y + 1));
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
 
 
