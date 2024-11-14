@@ -19,15 +19,16 @@ using namespace sf;
     int mouse_x;
     int mouse_y;
     bool right_pressed = false;
+    bool left_pressed = false;
     set<int> coordinates_moves;
     Piece* piece_pressed = new Piece;
-    int x_choosen;
-    int y_choosen;
+    int coor_chosen;
+    int a = 100;
+    bool turn = true;
+    int del_coor;
 
-
-    
-
-
+    std::unordered_map<int, Piece*> pieces;
+    //std::unordered_map<int, Piece*> pieces_kostil;
 
 
 
@@ -69,26 +70,24 @@ int main()
         if (First_play) {
             board.set_default_position();
             First_play = false;
+            pieces = board.get_pieces();
+
         }
         
         if (Mouse::isButtonPressed(sf::Mouse::Right)) {
             mouse_x = mousePos.x;
             mouse_y = mousePos.y;
             right_pressed = true;
+            left_pressed = false;
             
         }
 
         if (Mouse::isButtonPressed(sf::Mouse::Left)) {
             mouse_x = mousePos.x;
             mouse_y = mousePos.y;
-            for (int i : coordinates_moves) {
-                if (i % 8 == (mouse_x / 100) && i / 8 == (mouse_y / 100)) {
-
-                    board.setPiece(i, piece_pressed);
-
-                }
-            }
+            
             right_pressed = false;
+            left_pressed = true;
         }
 
 
@@ -96,20 +95,26 @@ int main()
 
         window.clear();
         window.draw(rectangle_board);
-        for (auto& item : board.pieces) {
+        for (auto& item : pieces) {
+            int coor_piece = item.second->get_coordinates().GetInt();
             Texture kostil = (item.second)->get_texture();
             piece_rectangle.setTexture(&kostil);
             piece_rectangle.setPosition(((item.first % 8)) * 100, (item.first / 8) * 100);
             
-            if (item.first % 8 == (mouse_x / 100) && item.first / 8 == (mouse_y / 100) && right_pressed) {
+            if (item.first % 8 == (mouse_x / 100) && item.first / 8 == (mouse_y / 100) && right_pressed && turn == item.second->get_color()) {
+                coor_chosen = item.first;
                 coordinates_moves.clear();
-                piece_pressed = new Piece;
-                item.second->get_posible_moves(board.pieces);
+                Piece* piece_new{ item.second };
+                piece_pressed = piece_new;
+                piece_pressed->clear_coordinate_moves();
+                
+                item.second->get_posible_moves(pieces);
                 for (int i = 0; i < 63;i++) {
                     for (int j : item.second->get_coordinates_moves()) {
                         if (i == j) {
+
                             coordinates_moves.insert(i);
-                            piece_pressed = item.second;
+
                             under_piece_rectangle.setPosition(((j % 8)) * 100, (j / 8) * 100);
                             under_piece_rectangle.setFillColor(sf::Color::Red);
                             window.draw(under_piece_rectangle);
@@ -118,18 +123,48 @@ int main()
                 }
                 under_piece_rectangle.setFillColor(sf::Color::Green);
             }
-
             else {
                 under_piece_rectangle.setFillColor(sf::Color::Transparent);
             }
+
+            //Govno* govn{ item.second };
+            
             under_piece_rectangle.setPosition(((item.first % 8)) * 100, (item.first / 8) * 100);
 
             window.draw(under_piece_rectangle);
             window.draw(piece_rectangle);
-
-
-
         }
+
+        /*if (left_pressed) {
+            for (int i : coordinates_moves) {
+                if (i % 8 == (mouse_x / 100) && i / 8 == (mouse_y / 100)) {
+
+                    for (auto it = begin(pieces); it != end(pieces);)
+                    {
+                        it = pieces.erase(it);
+                        ++it;
+                    }
+
+                    
+                    for (auto& item : pieces_kostil) {
+                        if (item.first != coor_chosen) {
+                            pieces.insert(std::make_pair(item.first, item.second));
+
+                        }
+                        
+
+                    }
+                    piece_pressed->set_coordinates(i);
+                    pieces.insert(std::make_pair(i, piece_pressed));
+
+                }
+            }
+        }*/
+        
+
+
+
+
         window.display();
     }
 

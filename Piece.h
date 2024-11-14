@@ -16,11 +16,9 @@ public:
 	Texture texture;
 	set <int> coordinates_moves;
 
-
 	bool get_color() {
 		return color;
 	}
-
 
 	Texture get_texture() {
 		return texture;
@@ -29,12 +27,23 @@ public:
 	set <int> get_coordinates_moves() {
 		return coordinates_moves;
 	}
-
+	void clear_coordinate_moves() {
+		coordinates_moves.clear();
+	}
 
 	Piece () {}
 
 
+	Piece(bool color1) {
+		color = color1;
 
+	}
+
+	Piece(const Piece& pice) {
+		color = pice.color;
+		coordinates = pice.coordinates;
+		texture = pice.texture;
+	}
 
 
 

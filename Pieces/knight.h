@@ -29,6 +29,18 @@ public:
 		}
 	}
 
+	Knight(bool color1) : Piece(color1) {
+		if (color1) {
+			texture.loadFromFile("images/HorseWhite.png");
+
+		}
+		else {
+			texture.loadFromFile("images/HorseBlack.png");
+
+		}
+	}
+
+
 
 	void get_posible_moves(unordered_map<int, Piece*> pieces) override {
 

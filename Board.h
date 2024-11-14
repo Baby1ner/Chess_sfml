@@ -25,6 +25,9 @@ public:
 
 	Board() {}
 
+	unordered_map<int, Piece*> get_pieces() {
+		return pieces;
+	}
 	void setPiece(Coordinates coordinates, Piece* piece) {
 		piece->set_coordinates(coordinates);
 		int int_coor = coordinates.GetInt();
@@ -36,7 +39,25 @@ public:
 		pieces.insert(std::make_pair(int_coor, piece));
 	}
 
-	//Ponos* ponos = new Ponos;
+	void delPiece(int int_coor) {
+		for (auto&& item : pieces)
+		{
+			if (item.first == int_coor)
+				pieces.erase(item.first);
+		}
+
+	}
+
+	void set_Coordinates(int int_coor, int new_coor) {
+		for (auto&& item : pieces)
+		{
+			if (item.first == int_coor)
+				item.second->set_coordinates(new_coor);
+		}
+	}
+
+
+
 	void set_default_position() {
 		King* king_bl = new King(false, 4);
 		setPiece(4, king_bl);
@@ -82,6 +103,7 @@ public:
 		setPiece(58, bishop2);
 		Bishop* bishop12 = new Bishop(true, 61);
 		setPiece(61, bishop12);
+
 
 
 	}
