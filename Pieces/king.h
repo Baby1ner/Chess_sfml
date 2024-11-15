@@ -45,22 +45,24 @@ public:
 		}
 
 
-		if (!contains_teammate(moment_x + 1 + moment_y - 1 * 8, pieces) && moment_x < 8 && moment_y >= 0) {
+
+		if (!contains_teammate(moment_x + 1 + (moment_y - 1) * 8, pieces) && moment_x < 8 && moment_y >= 0) {
 			coordinates_moves.insert(coor_int(moment_x + 1, moment_y - 1));
 		}
-		if (!contains_teammate(moment_x + 1 + moment_y * 8, pieces) && moment_x < 8) {
+		if (!contains_teammate(moment_x + 1 + (moment_y * 8), pieces) && moment_x < 8) {
 			coordinates_moves.insert(coor_int(moment_x + 1, moment_y));
 		}
-		if (!contains_teammate(moment_x + 1 + moment_y + 1 * 8, pieces) && moment_x < 8 && moment_y < 8) {
+		if (!contains_teammate(moment_x + 1 + (moment_y + 1) * 8, pieces) && moment_x < 8 && moment_y < 8) {
 			coordinates_moves.insert(coor_int(moment_x + 1, moment_y + 1));
 		}
 
 
 
-		if (!contains_teammate(moment_x + moment_y - 1 * 8, pieces) && moment_x < 8 && moment_y >= 0) {
+
+		if (!contains_teammate(moment_x + (moment_y - 1) * 8, pieces) && moment_x < 8 && moment_y >= 0) {
 			coordinates_moves.insert(coor_int(moment_x, moment_y - 1));
 		}
-		if (!contains_teammate(moment_x + moment_y + 1 * 8, pieces) && moment_x < 8 && moment_y < 8) {
+		if (!contains_teammate(moment_x + (moment_y + 1) * 8, pieces) && moment_x < 8 && moment_y < 8) {
 			coordinates_moves.insert(coor_int(moment_x, moment_y + 1));
 		}
 

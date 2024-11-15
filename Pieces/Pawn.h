@@ -58,46 +58,30 @@ public:
 
 		}
 
-
-
-
-
-
-
-
-
-
-
-		moment_y = coordinates.ycoor+1;
-		moment_x = coordinates.ycoor+1;
-
-		if (contains_enemy(moment_x + moment_y * 8, pieces) && moment_x  < 8 && moment_y < 8 && !color ) {
-			coordinates_moves.insert(coor_int(moment_x, moment_y));
-		}
-
+		moment_x = coordinates.xcoor + 1;
 		moment_y = coordinates.ycoor + 1;
-		moment_x = coordinates.ycoor - 1;
+		if (contains_enemy(moment_x + (moment_y * 8), pieces) && !color) {
+			coordinates_moves.insert(coor_int(moment_x, moment_y));
+		}
 
-		if (contains_enemy(moment_x + moment_y * 8, pieces) && moment_x >= 0 && moment_y < 8 && !color) {
+		moment_x = coordinates.xcoor - 1;
+		moment_y = coordinates.ycoor + 1;
+		if (contains_enemy(moment_x + (moment_y * 8), pieces) && !color) {
 			coordinates_moves.insert(coor_int(moment_x, moment_y));
 		}
 
 
-
+		moment_x = coordinates.xcoor + 1;
 		moment_y = coordinates.ycoor - 1;
-		moment_x = coordinates.ycoor + 1;
-
-		if (contains_enemy(moment_x + moment_y * 8, pieces) && moment_x < 8 && moment_y >= 0 && color) {
+		if (contains_enemy(moment_x + (moment_y * 8), pieces) && color) {
 			coordinates_moves.insert(coor_int(moment_x, moment_y));
 		}
 
+		moment_x = coordinates.xcoor - 1;
 		moment_y = coordinates.ycoor - 1;
-		moment_x = coordinates.ycoor - 1;
-
-		if (contains_enemy(moment_x + moment_y * 8, pieces) && moment_x >= 0 && moment_x >=0 && color) {
+		if (contains_enemy(moment_x + (moment_y * 8), pieces) && color) {
 			coordinates_moves.insert(coor_int(moment_x, moment_y));
 		}
-
 
 
 

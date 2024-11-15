@@ -100,8 +100,16 @@ int main()
 
 
 
-
         window.clear();
+
+
+
+
+
+
+
+
+
         window.draw(rectangle_board);
         for (auto& item : pieces) {
             int coor_piece = item.second->get_coordinates().GetInt();
@@ -161,6 +169,7 @@ int main()
 
                     }
                 }
+                coordinates_moves.clear();
 
 
             }
