@@ -28,7 +28,7 @@ using namespace sf;
     int del_coor;
     bool do_once = true;
     std::unordered_map<int, Piece*> pieces;
-
+    int qeens = 21;
 
 
 
@@ -174,13 +174,19 @@ int main()
 
             }
 
+
+
+
+
+
+
+
+
             //if (item.first == 3 || item.first == )
+            
 
+            
 
-
-
-
-            //Govno* govn{ item.second };
             
             under_piece_rectangle.setPosition(((coor_piece % 8)) * 100, (coor_piece / 8) * 100);
 
@@ -188,8 +194,37 @@ int main()
             window.draw(piece_rectangle);
         }
 
-        // в гет мув проверить чтобы не выходило за поле
-        
+
+        for (auto& item : pieces) {
+            if (item.second->get_king()) {
+                if (item.second->get_coordinates().GetInt() == -1) {
+                    return 0;
+                }
+            }
+        }
+
+
+        for (auto& item : pieces) {
+            if (item.second->get_pawn()) {
+                if (item.second->get_coordinates().ycoor == 0 && item.second->get_color()) {
+                    int coor = item.second->get_coordinates().GetInt();
+                    item.second->set_coordinates(-1);
+                    Queen* queen_new = new Queen(true, coor);
+                    pieces.insert(std::make_pair(qeens, queen_new));
+                    qeens++;
+
+                }
+
+                if (item.second->get_coordinates().ycoor == 7 && !item.second->get_color()) {
+                    int coor = item.second->get_coordinates().GetInt();
+                    item.second->set_coordinates(-1);
+                    Queen* queen_new = new Queen(false, coor);
+                    pieces.insert(std::make_pair(qeens, queen_new));
+                    qeens++;
+
+                }
+            }
+        }
 
 
 

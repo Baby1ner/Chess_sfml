@@ -11,20 +11,21 @@ public:
 	King(bool color1, Coordinates coordinates1) : Piece(color1, coordinates1) {
 		if (color1) {
 			texture.loadFromFile("images/KingWhite.png");
+			king = true;
 		}
 		else {
 			texture.loadFromFile("images/KingBlack.png");
-
+			king = true;
 		}
 	}
 	King(bool color1, int coor) : Piece(color1, coor) {
 		if (color1) {
 			texture.loadFromFile("images/KingWhite.png");
-
+			king = true;
 		}
 		else {
 			texture.loadFromFile("images/KingBlack.png");
-
+			king = true;
 		}
 	}
 

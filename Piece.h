@@ -10,13 +10,16 @@ class Piece
 {
 	
 public:
-
+	bool pawn = false;
+	bool king = false;
 	bool first_move = true;
 	bool color = false;
 	Coordinates coordinates;
 	Texture texture;
 	set <int> coordinates_moves;
 
+	bool get_king() { return king; }
+	bool get_pawn() { return pawn; }
 	void set_first_move(bool r) { first_move = r; }
 	bool get_color() {
 		return color;
